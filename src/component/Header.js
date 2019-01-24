@@ -21,6 +21,6 @@ const Header = () => (
             </Menu.Item>
         </Container>
     </Menu>
-)
+);
 
 export default Header

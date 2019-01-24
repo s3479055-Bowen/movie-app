@@ -36,6 +36,6 @@ const Footer = () => (
             </Grid>
         </Container>
     </Segment>
-)
+);
 
 export default Footer
