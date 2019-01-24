@@ -1,3 +1,6 @@
+import Movie from "../model/Movie"
+import User from "../model/User";
+
 const moviesData = [
     {
         id: 1,
@@ -43,4 +46,19 @@ const moviesData = [
     }
 ];
 
-export default moviesData
+const userData = {
+    email: "john@movie.com",
+    FirstName: "John",
+    LastName: "Swiwac",
+    gender: "male",
+    Age: 23,
+    dob: "12/03/1995"
+};
+
+export function login(username, password) {
+    return new User(userData.email, userData.FirstName, userData.LastName, userData.gender, userData.Age, userData.dob);
+}
+
+export function getTrendingMovies() {
+    return moviesData.map(movieData => new Movie(movieData.id, movieData.name, movieData.description, movieData.posterUrl));
+}

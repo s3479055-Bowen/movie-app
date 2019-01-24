@@ -1,14 +1,22 @@
 import React from 'react';
 import {Image} from "semantic-ui-react";
 
-import moviesData from "../data/moviesData"
+import {getTrendingMovies} from "../data/service"
 
-const movieImages = moviesData.map(movie => <Image src={movie.posterUrl}/>);
+class ImageList extends React.Component {
 
-const ImageList = () => (
-    <Image.Group size='small'>
-        {movieImages}
-    </Image.Group>
-);
+    getMovieImages() {
+        return getTrendingMovies().map(
+            movie => <Image key={movie.id} src={movie.posterUrl}/>);
+    }
+
+    render() {
+        return (
+            <Image.Group size='small'>
+                {this.getMovieImages()}
+            </Image.Group>
+        )
+    }
+}
 
 export default ImageList
