@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Container, Image, Menu} from "semantic-ui-react";
+import {Button, Container, Grid, Image, Menu, Popup} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 class Header extends Component {
@@ -27,8 +27,8 @@ class Header extends Component {
                         <Link exact to="/">Home</Link>
                     </Menu.Item>
                     <Menu.Item position='right'>
-                        <Button as='a'>
-                            Log in
+                        <Button>
+                            <Link exact to="/login">Login</Link>
                         </Button>
                     </Menu.Item>
                 </Container>
