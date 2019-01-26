@@ -1,7 +1,7 @@
-import Movie from "../model/Movie"
 import User from "../model/User";
+import Movie from "../model/Movie"
 
-const moviesData = [
+export const moviesData = [
     {
         id: 1,
         name: "Movie 1",
@@ -31,18 +31,6 @@ const moviesData = [
         name: "Movie 5",
         description: "A short description of Movie 5.",
         posterUrl: "/image.png"
-    },
-    {
-        id: 6,
-        name: "Movie 6",
-        description: "A short description of Movie 6.",
-        posterUrl: "/image.png"
-    },
-    {
-        id: 7,
-        name: "Movie 7",
-        description: "A short description of Movie 7.",
-        posterUrl: "/image.png"
     }
 ];
 
@@ -61,4 +49,9 @@ export function login(username, password) {
 
 export function getTrendingMovies() {
     return moviesData.map(movieData => new Movie(movieData.id, movieData.name, movieData.description, movieData.posterUrl));
+}
+
+export function getMovieById(movieId) {
+    let movies = moviesData.map(movieData => new Movie(movieData.id, movieData.name, movieData.description, movieData.posterUrl));
+    return movies.find(element => (element.id === movieId))
 }
