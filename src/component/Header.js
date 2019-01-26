@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Container, Image, Menu} from "semantic-ui-react";
+import {Link} from "react-router-dom";
 
 class Header extends Component {
 
@@ -22,9 +23,9 @@ class Header extends Component {
                         <Image size='mini' src='/logo.png' style={{marginRight: '1.5em'}}/>
                         My Movie App
                     </Menu.Item>
-                    <Menu.Item as='a'>Home</Menu.Item>
-                    <Menu.Item as='a'>Home</Menu.Item>
-                    <Menu.Item as='a'>Home</Menu.Item>
+                    <Menu.Item as='a'>
+                        <Link exact to="/">Home</Link>
+                    </Menu.Item>
                     <Menu.Item position='right'>
                         <Button as='a'>
                             Log in

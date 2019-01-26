@@ -1,6 +1,3 @@
-import User from "../model/User";
-import Movie from "../model/Movie"
-
 export const moviesData = [
     {
         id: 1,
@@ -34,7 +31,7 @@ export const moviesData = [
     }
 ];
 
-const userData = {
+export const userData = {
     email: "john@movie.com",
     FirstName: "John",
     LastName: "Swiwac",
@@ -42,16 +39,3 @@ const userData = {
     Age: 23,
     dob: "12/03/1995"
 };
-
-export function login(username, password) {
-    return new User(userData.email, userData.FirstName, userData.LastName, userData.gender, userData.Age, userData.dob);
-}
-
-export function getTrendingMovies() {
-    return moviesData.map(movieData => new Movie(movieData.id, movieData.name, movieData.description, movieData.posterUrl));
-}
-
-export function getMovieById(movieId) {
-    let movies = moviesData.map(movieData => new Movie(movieData.id, movieData.name, movieData.description, movieData.posterUrl));
-    return movies.find(element => (element.id === movieId))
-}

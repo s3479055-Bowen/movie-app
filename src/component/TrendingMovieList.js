@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Image} from "semantic-ui-react";
-import {moviesData} from "../data/service";
+import {moviesData} from "../mockupData";
+import {Link} from "react-router-dom";
 
 class TrendingMovieList extends Component {
 
@@ -47,7 +48,9 @@ class TrendingMovieList extends Component {
             <Grid columns={5}>
                 {this.state.movies.map(movie =>
                     <Grid.Column key={movie.id}>
-                        <Image src={movie.posterUrl}/>
+                        <Link to={`/movie/${movie.id}`}>
+                            <Image src={movie.posterUrl}/>
+                        </Link>
                     </Grid.Column>
                 )}
             </Grid>

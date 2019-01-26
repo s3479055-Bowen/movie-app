@@ -1,26 +1,27 @@
-import React, {Component} from 'react';
+// library import
+import React from 'react';
+import {Route, Switch} from "react-router-dom";
+
+// local import
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import MovieHero from "./component/MovieHero";
-import TrendingMovieList from "./component/TrendingMovieList";
-import {Container} from "semantic-ui-react";
+import Home from "./page/Home";
+import Movie from "./page/Movie";
 
-class App extends Component {
+function App() {
 
-    render() {
-        return (
-            <div className="App">
-                <Header/>
-                <main>
-                    <MovieHero/>
-                    <Container textAlign='center' style={{marginTop: '7em', marginBottom: '2em'}}>
-                        <TrendingMovieList/>
-                    </Container>
-                </main>
-                <Footer/>
+    return (
+        <div className="App">
+            <Header/>
+            <div>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/movie/:movieId" component={Movie}/>
+                </Switch>
             </div>
-        )
-    };
+            <Footer/>
+        </div>
+    )
 }
 
 export default App;
