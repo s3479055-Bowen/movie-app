@@ -11,8 +11,8 @@ import User from "./page/User";
 import Login from "./page/Login";
 
 export const SessionContext = React.createContext({
-    user: null,
-    token: null,
+    user: {},
+    token: "",
     updateSession: (user, token) => {
         this.user = user;
         this.token = token;
@@ -32,7 +32,7 @@ class App extends Component {
                 token: token
             });
 
-            if (user != null && token != null) {
+            if (!user && !token) {
                 sessionStorage.setItem("user", user);
                 sessionStorage.setItem("token", token);
             } else {

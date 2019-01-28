@@ -10,6 +10,7 @@ class Login extends Component {
         this.state = {
             username: "",
             password: "",
+            isLoading: false,
             error: ""
         };
         this.handleChange = this.handleChange.bind(this);
@@ -27,13 +28,23 @@ class Login extends Component {
 
         event.preventDefault();
 
+        this.setState({
+            isLoading: true
+        });
+
         // validation
         if (!this.state.username || !this.state.password) {
             this.setState({
+                isLoading: false,
                 error: "Invalid username or password"
             });
             return;
         }
+
+        this.setState({
+            error: ""
+        });
+
 
         // let formData = new FormData();
         // formData.append("username", this.state.username);
@@ -50,9 +61,13 @@ class Login extends Component {
         //     .then(response => response.json())
         //     .then(data => {
         //         // save user object and token to context
+        //         this.setState({
+        //             isLoading: false
+        //         });
         //         this.context.updateSession(data.user, data.token);
         //         this.props.history.push('/');
         //     });
+
 
         setTimeout(() => {
 
@@ -66,15 +81,14 @@ class Login extends Component {
                 updateSession(loginResponse.user, loginResponse.token);
                 this.props.history.push('/')
             }
+
+            this.setState({
+                isLoading: false
+            });
         }, 1500)
     }
 
     render() {
-
-        let errorMessage;
-        if (this.state.error) {
-            errorMessage = <Message color='red'>Error: {this.state.error}</Message>
-        }
 
         return (
             <SessionContext.Consumer>
@@ -101,12 +115,15 @@ class Login extends Component {
                                             placeholder='Password'
                                             type='password'
                                             onChange={this.handleChange}/>
-                                        <Button color='black' fluid size='large'>
-                                            Login
-                                        </Button>
+                                        <Button
+                                            color='black'
+                                            fluid size='large'
+                                            disabled={this.state.isLoading}
+                                            loading={this.state.isLoading}
+                                            content='Login'/>
                                     </Segment>
                                 </Form>
-                                {errorMessage}
+                                {this.state.error ? <Message color='red'>Error: {this.state.error}</Message> : ''}
                             </Grid.Column>
                         </Grid>
                     </Container>

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Container} from "semantic-ui-react";
 import {Redirect} from "react-router";
+import {SessionContext} from "../App";
 
 class User extends Component {
 
@@ -9,19 +10,27 @@ class User extends Component {
         this.state = {};
     }
 
-    render() {
+    static checkSession(user, token) {
 
-        console.log(this.context.token);
+        console.log(`User: ${user.username}`);
+        console.log(`Token: ${token}`);
 
-        let user = this.context.user;
-        if (user == null) {
+        if (!user || !token) {
             return <Redirect to="/"/>;
         }
 
         return (
             <Container textAlign='center' style={{marginTop: '7em', marginBottom: '2em'}}>
-                <h1>User Page</h1>
+                <h1>User Page: {user.username}</h1>
             </Container>
+        );
+    }
+
+    render() {
+        return (
+            <SessionContext.Consumer>
+                {({user, token}) => (User.checkSession(user, token))}
+            </SessionContext.Consumer>
         );
     }
 }

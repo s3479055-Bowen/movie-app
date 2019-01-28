@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Container, Image, Menu} from "semantic-ui-react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {SessionContext} from "../App";
 
 class Header extends Component {
@@ -10,22 +10,29 @@ class Header extends Component {
         console.log(`(Debug: Header) User: ${user}`);
         console.log(`(Debug: Header) Token: ${token}`);
 
-        let isLoggedIn = (user != null && token != null);
+        let isLoggedIn = (user && token);
 
-        let button;
+        let rightSection;
         if (isLoggedIn) {
-            button = (
-                <Button onClick={() => {
-                    updateSession(null, null);
-                }}>
-                    Logout
-                </Button>
+            rightSection = (
+                <Menu.Item position='right'>
+                    <Button onClick={() => updateSession({}, "")}>
+                        Logout
+                    </Button>
+                    <Button style={{marginLeft: '0.5em'}}>
+                        <NavLink style={{color: 'rgba(0, 0, 0, 0.6)'}} to="/user">
+                            Profile
+                        </NavLink>
+                    </Button>
+                </Menu.Item>
             );
         } else {
-            button = (
-                <Button>
-                    <Link color="black" to="/login">Login</Link>
-                </Button>
+            rightSection = (
+                <Menu.Item as='a' position='right'>
+                    <NavLink activeStyle={{fontWeight: 'bold'}} to="/login">
+                        Login
+                    </NavLink>
+                </Menu.Item>
             );
         }
 
@@ -37,11 +44,9 @@ class Header extends Component {
                         My Movie App
                     </Menu.Item>
                     <Menu.Item as='a'>
-                        <Link exact to="/">Home</Link>
+                        <NavLink activeStyle={{fontWeight: 'bold'}} exact to="/">Home</NavLink>
                     </Menu.Item>
-                    <Menu.Item position='right'>
-                        {button}
-                    </Menu.Item>
+                    {rightSection}
                 </Container>
             </Menu>
         );
