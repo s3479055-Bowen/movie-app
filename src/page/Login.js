@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Button, Container, Form, Grid, Header, Message, Segment} from 'semantic-ui-react'
 import {SessionContext} from "../App";
-import {userData} from "../mockupData";
+import {loginData, loginResponse} from "../mockupData";
 
 class Login extends Component {
 
@@ -9,7 +9,8 @@ class Login extends Component {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            error: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +27,14 @@ class Login extends Component {
 
         event.preventDefault();
 
+        // validation
+        if (!this.state.username || !this.state.password) {
+            this.setState({
+                error: "Invalid username or password"
+            });
+            return;
+        }
+
         // let formData = new FormData();
         // formData.append("username", this.state.username);
         // formData.append("password", this.state.password);
@@ -41,16 +50,32 @@ class Login extends Component {
         //     .then(response => response.json())
         //     .then(data => {
         //         // save user object and token to context
-        //         this.context.updateSession(userData, "new token");
+        //         this.context.updateSession(data.user, data.token);
         //         this.props.history.push('/');
         //     });
 
-        console.log("handleSubmit");
-        updateSession(userData, "new token");
-        this.props.history.push('/')
+        setTimeout(() => {
+
+            if (this.state.username !== loginData.username
+                || this.state.password !== loginData.password) {
+                this.setState({
+                    error: "Invalid username or password"
+                });
+            } else {
+                console.log("handleSubmit");
+                updateSession(loginResponse.user, loginResponse.token);
+                this.props.history.push('/')
+            }
+        }, 1500)
     }
 
     render() {
+
+        let errorMessage;
+        if (this.state.error) {
+            errorMessage = <Message color='red'>Error: {this.state.error}</Message>
+        }
+
         return (
             <SessionContext.Consumer>
                 {({user, token, updateSession}) => (
@@ -81,15 +106,7 @@ class Login extends Component {
                                         </Button>
                                     </Segment>
                                 </Form>
-                                {/*<Message>*/}
-                                {/*New to us? <a href='#'>Sign Up</a>*/}
-                                {/*</Message>*/}
-                                <Message>
-                                    {`Username: ${this.state.username}`}
-                                </Message>
-                                <Message>
-                                    {`Password: ${this.state.password}`}
-                                </Message>
+                                {errorMessage}
                             </Grid.Column>
                         </Grid>
                     </Container>

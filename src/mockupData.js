@@ -65,12 +65,21 @@ export function getMovie(movieId) {
     return movie;
 }
 
-export const userData = {
-    id: 1,
-    username: "derrick",
-    firstname: "John",
-    lastname: "Swiwac",
-    gender: "male",
-    Age: 23,
-    dob: "12/03/1995"
+export const loginData = {
+    username: "john.tester",
+    password: "12345"
+};
+
+export const loginResponse = {
+    user: {
+        id: 1,
+        username: "john.tester",
+        email: "john@gmail.com",
+        firstname: "John",
+        lastname: "Swiwac",
+        gender: "male",
+        age: 23,
+        dob: "12/03/1995"
+    },
+    token: "super_secure_token"
 };
