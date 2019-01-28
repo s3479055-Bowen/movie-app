@@ -15,7 +15,7 @@ function App() {
     return (
         <div className="App">
             <Header/>
-            <div style={{minHeight: '40em'}}>
+            <div style={{minHeight: '30em'}}>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/movie/:movieId" component={Movie}/>

@@ -1,6 +1,6 @@
 {
   "short_name": "My Movie App",
-  "name": "Cloud Movie App Sample",
+  "title": "Cloud Movie App Sample",
   "icons": [
     {
       "src": "favicon.ico",
