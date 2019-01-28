@@ -1,21 +1,34 @@
 import React, {Component} from 'react';
-import {Button, Container, Grid, Image, Menu, Popup} from "semantic-ui-react";
+import {Button, Container, Image, Menu} from "semantic-ui-react";
 import {Link} from "react-router-dom";
+import {SessionContext} from "../App";
 
 class Header extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoggedIn: false
-        };
-    }
+    showLoginOrLogout(user, token, updateSession) {
 
-    componentDidMount() {
+        console.log(`(Debug: Header) User: ${user}`);
+        console.log(`(Debug: Header) Token: ${token}`);
 
-    }
+        let isLoggedIn = (user != null && token != null);
 
-    render() {
+        let button;
+        if (isLoggedIn) {
+            button = (
+                <Button onClick={() => {
+                    updateSession(null, null);
+                }}>
+                    Logout
+                </Button>
+            );
+        } else {
+            button = (
+                <Button>
+                    <Link color="black" to="/login">Login</Link>
+                </Button>
+            );
+        }
+
         return (
             <Menu fixed='top' inverted>
                 <Container>
@@ -27,15 +40,20 @@ class Header extends Component {
                         <Link exact to="/">Home</Link>
                     </Menu.Item>
                     <Menu.Item position='right'>
-                        <Button>
-                            <Link exact to="/login">Login</Link>
-                        </Button>
+                        {button}
                     </Menu.Item>
                 </Container>
             </Menu>
         );
     }
-}
 
+    render() {
+        return (
+            <SessionContext.Consumer>
+                {({user, token, updateSession}) => (this.showLoginOrLogout(user, token, updateSession))}
+            </SessionContext.Consumer>
+        );
+    }
+}
 
 export default Header

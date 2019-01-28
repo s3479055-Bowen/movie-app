@@ -66,9 +66,10 @@ export function getMovie(movieId) {
 }
 
 export const userData = {
-    email: "john@movie.com",
-    FirstName: "John",
-    LastName: "Swiwac",
+    id: 1,
+    username: "derrick",
+    firstname: "John",
+    lastname: "Swiwac",
     gender: "male",
     Age: 23,
     dob: "12/03/1995"

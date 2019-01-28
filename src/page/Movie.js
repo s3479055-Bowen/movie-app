@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container, Header, Image, Message} from "semantic-ui-react";
+import {Container, Header, Image} from "semantic-ui-react";
 import {getMovie} from "../mockupData";
 import ReactPlayer from "react-player";
 

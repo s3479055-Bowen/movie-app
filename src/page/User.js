@@ -11,6 +11,8 @@ class User extends Component {
 
     render() {
 
+        console.log(this.context.token);
+
         let user = this.context.user;
         if (user == null) {
             return <Redirect to="/"/>;
