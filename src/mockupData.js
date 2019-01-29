@@ -77,7 +77,7 @@ export const loginResponse = {
         email: "john@gmail.com",
         firstname: "John",
         lastname: "Swiwac",
-        gender: "male",
+        gender: "Male",
         age: 23,
         dob: "12/03/1995"
     },

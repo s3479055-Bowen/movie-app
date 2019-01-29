@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Header, Responsive, Segment} from "semantic-ui-react";
 
-const getWidth = () => {
+export const getWidth = () => {
     const isSSR = typeof window === 'undefined'
     return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
 };
@@ -9,7 +9,7 @@ const getWidth = () => {
 const MovieHero = () => (
 
     <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-        <Segment
+        <Segment stacked
             textAlign='center'
             style={{minHeight: 700, padding: '1em 0em'}}
             vertical>

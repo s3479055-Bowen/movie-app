@@ -109,8 +109,7 @@ class Login extends Component {
                                             onChange={this.handleChange}/>
                                         <Form.Input
                                             name="password"
-                                            fluid
-                                            icon='lock'
+                                            fluid icon='lock'
                                             iconPosition='left'
                                             placeholder='Password'
                                             type='password'
